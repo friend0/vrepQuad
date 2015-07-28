@@ -1,3 +1,5 @@
+CLIENT_EXECUTABLE = '/Users/empire/Documents/MATLAB/vrepMatlab/quadClient.m'
+
 if (sim_call_type==sim_childscriptcall_initialization) then 
 	
 -- Server-side Init-------------------------------------------------------------------------
@@ -51,15 +53,16 @@ if (sim_call_type==sim_childscriptcall_initialization) then
 		-- We first start the remote Api server service (this requires the v_repExtRemoteApi plugin):
 		print(portNb)
 		simExtRemoteApiStart(portNb) -- this server function will automatically close again at simulation end
-
 		-- Now we start the client application:
-		-- result=simLaunchExecutable('quadClient',portNb.." "..prop1.." "..prop2.." "..prop3.."  "..prop4.."  "..noseSensor,0) -- set the last argument to 1 to see the console of the launched client
+		--result=simLaunchExecutable('CLIENT_EXECUTABLE',portNb.." "..prop1.." "..prop2.." "..prop3.."  "..prop4.."  "..noseSensor,0) -- set the last argument to 1 to see the console of the launched client
+        --result = simLaunchExecutable(CLIENT_EXECUTABLE, portNb, 0)
+        --print(result)
 
-		-- if (result==-1) then
-		--	-- The executable could not be launched!
+		--if (result == -1) then
+               -- The executable could not be launched!
 		--	simDisplayDialog('Error',"'quadClient' could not be launched. &&nSimulation will not run properly",sim_dlgstyle_ok,true,nil,{0.8,0,0,0,0,0},{0.5,0,0,1,1,1})
 		--end
-	end
+end
 	-------------------------------------------------------------------------------------------------------------------
 
 	-- Make sure we have version 2.4.13 or above (the particles are not supported otherwise)
@@ -89,9 +92,9 @@ if (sim_call_type==sim_childscriptcall_initialization) then
 
 	particlesTargetVelocities={0,0,0,0}
 
-	pParam=5
-	iParam=.35
-	dParam= .15
+	pParam=20
+	iParam=.05
+	dParam= .25
 	vParam=-4
 
 	cumul=0
